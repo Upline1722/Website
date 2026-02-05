@@ -1,8 +1,7 @@
-import HomeMainPage from '@/components/home/HomeMainPage';
 import React from 'react';
 
 type Props = {};
 
 export default function page({}: Props) {
-  return <HomeMainPage />;
+  return <div>page</div>;
 }
