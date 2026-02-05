@@ -10,7 +10,7 @@ type Props = {};
 
 export default function HomeMainPage({}: Props) {
   return (
-    <section className=''>
+    <main className=''>
       <HeroSection
         heroImage={Hero}
         heading='Systems & IT Consulting Excellence'
@@ -20,6 +20,6 @@ export default function HomeMainPage({}: Props) {
       <Features />
       <ClientsWeServe />
       <Companies />
-    </section>
+    </main>
   );
 }

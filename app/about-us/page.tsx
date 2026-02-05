@@ -1,7 +1,7 @@
-import AboutIUsMainPage from '@/components/about-us/AboutIUsMainPage';
+import AboutUsMainPage from '@/components/about-us/AboutUsMainPage';
 
 type Props = {};
 
 export default function page({}: Props) {
-  return <AboutIUsMainPage />;
+  return <AboutUsMainPage />;
 }

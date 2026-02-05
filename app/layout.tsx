@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import TopNav from '@/components/general/TopNav';
 import Footer from '@/components/general/Footer';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta-sans',
+});
 
 export const metadata: Metadata = {
   title: 'Upline Systems Consulting',
@@ -16,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='antialiased'>
+      <body className={`${plusJakartaSans.variable} antialiased`}>
         <TopNav />
         {children}
         <Footer />
