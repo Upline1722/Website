@@ -10,6 +10,7 @@ import {
   Factory,
   Plane,
   Smartphone,
+  Forklift,
 } from 'lucide-react';
 
 type Props = {};
@@ -26,8 +27,8 @@ export default function ClientsWeServe({}: Props) {
       name: 'Real Estate',
     },
     {
-      icon: <HeartPulse className='w-12 h-12' />,
-      name: 'Healthcare',
+      icon: <Forklift className='w-12 h-12' />,
+      name: 'Logistics & Supply Chain',
     },
     {
       icon: <GraduationCap className='w-12 h-12' />,
