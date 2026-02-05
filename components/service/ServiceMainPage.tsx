@@ -124,15 +124,15 @@ export default function ServiceMainPage({}: Props) {
             {services.map((service, index) => (
               <div
                 key={index}
-                className='group bg-white border border-gray-200 rounded-xl p-8 hover:shadow-2xl hover:border-blue-600 transition-all duration-300'
+                className='group bg-white border border-gray-200 rounded-xl p-8 hover:shadow-2xl hover:border-primary transition-all duration-300'
               >
                 {/* Icon */}
-                <div className='mb-6 text-blue-600 group-hover:scale-110 transition-transform duration-300'>
+                <div className='mb-6 text-primary group-hover:scale-110 transition-transform duration-300'>
                   {service.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className='text-2xl font-bold mb-4 group-hover:text-blue-600 transition-colors'>
+                <h3 className='text-2xl font-bold mb-4 group-hover:text-primary transition-colors'>
                   {service.title}
                 </h3>
 
@@ -149,7 +149,7 @@ export default function ServiceMainPage({}: Props) {
                         key={idx}
                         className='flex items-start text-sm text-gray-700'
                       >
-                        <span className='text-blue-600 mr-2'>✓</span>
+                        <span className='text-primary mr-2'>✓</span>
                         {feature}
                       </li>
                     ))}

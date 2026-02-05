@@ -19,7 +19,6 @@ export default function Footer({}: Props) {
     { href: '/', label: 'Home' },
     { href: '/service', label: 'Service' },
     { href: '/contact-us', label: 'Contact Us' },
-    { href: '/clients', label: 'Clients' },
     { href: '/about-us', label: 'About Us' },
   ];
 

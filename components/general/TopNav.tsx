@@ -114,9 +114,16 @@ export default function TopNav({}: Props) {
           </div>
 
           {/* Desktop CTA Button */}
-          <Button variant={'outline'} className='hidden md:flex rounded-full'>
-            Start a Project <ArrowRight />
-          </Button>
+          <Link href='/contact-us'>
+            <Button
+              variant={'outline'}
+              className={`bg-transparent hidden md:flex rounded-full cursor-pointer ${
+                isFixed ? 'text-deep-primary border-deep-primary' : 'text-white'
+              }`}
+            >
+              Start a Project <ArrowRight />
+            </Button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
