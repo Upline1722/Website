@@ -67,13 +67,15 @@ export default function TopNav({}: Props) {
                 {link.label}
               </Link>
             ))}
-            <Button
-              variant={'outline'}
-              className='rounded-full mt-8'
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Start a Project <ArrowRight />
-            </Button>
+            <Link href='/contact-us'>
+              <Button
+                variant={'outline'}
+                className='rounded-full mt-8'
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Start a Project <ArrowRight />
+              </Button>
+            </Link>
           </div>
         </div>
       )}
@@ -133,7 +135,7 @@ export default function TopNav({}: Props) {
             } ${isMobileMenuOpen ? 'text-gray-800' : ''}`}
           >
             {isMobileMenuOpen ? (
-              <X className='w-6 h-6' />
+              <X className='w-6 h-6 text-gray-800' />
             ) : (
               <Menu className='w-6 h-6' />
             )}
