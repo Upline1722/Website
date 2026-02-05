@@ -3,6 +3,7 @@
 import React from 'react';
 import { Code2, Zap, Shield, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 type Props = {};
 
@@ -96,11 +97,13 @@ export default function Features({}: Props) {
         </div>
 
         {/* CTA Button */}
-        <div className='text-center'>
-          <Button size='lg' className='group rounded-full'>
-            Explore Our Services
-            <ArrowRight className='ml-2 group-hover:translate-x-1 transition-transform' />
-          </Button>
+        <div className='w-full flex justify-center'>
+          <Link className='text-center' href='/service'>
+            <Button size='lg' className='group rounded-full cursor-pointer'>
+              Explore Our Services
+              <ArrowRight className='ml-2 group-hover:translate-x-1 transition-transform' />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

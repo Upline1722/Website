@@ -91,8 +91,8 @@ export default function TopNav({}: Props) {
             <Image
               src={Logo}
               alt='Upline Systems Consulting Logo'
-              width={40}
-              height={40}
+              width={24}
+              height={24}
             />
           </Link>
 
