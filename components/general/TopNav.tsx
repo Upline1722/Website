@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Logo from '../../public/logo.png';
 import Link from 'next/link';
@@ -12,6 +12,7 @@ type Props = {};
 
 export default function TopNav({}: Props) {
   const [isFixed, setIsFixed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -27,48 +28,111 @@ export default function TopNav({}: Props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const links = [
     { href: '/', label: 'Home' },
     { href: '/service', label: 'Service' },
     { href: '/contact-us', label: 'Contact Us' },
-    { href: '/clients', label: 'Clients' },
     { href: '/about-us', label: 'About Us' },
   ];
 
   return (
-    <nav
-      className={`w-full transition-all duration-300 z-[100] ${
-        isFixed
-          ? 'fixed top-0 left-0 right-0 bg-white/10 backdrop-blur-md shadow-md z-50 px-6 py-4'
-          : 'absolute top-0 left-0 right-0 bg-transparent px-6 py-4'
-      }`}
-    >
-      <div className='w-[1400px] mx-auto flex items-center justify-between'>
-        <Image
-          src={Logo}
-          alt='Upline Systems Consulting Logo'
-          width={24}
-          height={24}
-        />
-
-        <div className='flex items-center gap-8'>
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm ${isFixed ? 'text-deep-primary' : 'text-white'} font-medium transition-opacity hover:opacity-100 ${
-                pathname === link.href ? 'opacity-60' : 'opacity-100'
-              }`}
+    <>
+      {/* Mobile Menu - Fixed and Non-scrollable */}
+      {isMobileMenuOpen && (
+        <div className='fixed inset-0 bg-white z-[90] md:hidden overflow-hidden'>
+          <div className='flex flex-col items-center justify-center h-full space-y-8'>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`text-2xl font-medium transition-opacity hover:opacity-100 ${
+                  pathname === link.href
+                    ? 'opacity-60 text-blue-600'
+                    : 'opacity-100 text-gray-800'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button
+              variant={'outline'}
+              className='rounded-full mt-8'
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              {link.label}
-            </Link>
-          ))}
+              Start a Project <ArrowRight />
+            </Button>
+          </div>
         </div>
+      )}
 
-        <Button variant={'outline'} className='rounded-full'>
-          Start a Project <ArrowRight />
-        </Button>
-      </div>
-    </nav>
+      <nav
+        className={`w-full transition-all duration-300 z-[100] ${
+          isFixed
+            ? 'fixed top-0 left-0 right-0 bg-white/10 backdrop-blur-md shadow-md px-6 py-4'
+            : 'absolute top-0 left-0 right-0 bg-transparent px-6 py-4'
+        }`}
+      >
+        <div className='max-w-[1400px] mx-auto flex items-center justify-between'>
+          {/* Logo */}
+          <Link href='/'>
+            <Image
+              src={Logo}
+              alt='Upline Systems Consulting Logo'
+              width={40}
+              height={40}
+            />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className='hidden md:flex items-center gap-8'>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm ${
+                  isFixed ? 'text-deep-primary' : 'text-white'
+                } font-medium transition-opacity hover:opacity-100 ${
+                  pathname === link.href ? 'opacity-60' : 'opacity-100'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Desktop CTA Button */}
+          <Button variant={'outline'} className='hidden md:flex rounded-full'>
+            Start a Project <ArrowRight />
+          </Button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`md:hidden z-[110] relative ${
+              isFixed ? 'text-deep-primary' : 'text-white'
+            } ${isMobileMenuOpen ? 'text-gray-800' : ''}`}
+          >
+            {isMobileMenuOpen ? (
+              <X className='w-6 h-6' />
+            ) : (
+              <Menu className='w-6 h-6' />
+            )}
+          </button>
+        </div>
+      </nav>
+    </>
   );
 }
